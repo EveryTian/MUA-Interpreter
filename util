@@ -1,0 +1,8 @@
+qsort
+[ [ l ] [ if eq thing "l [ ] [ output [ ] ] [ make "x first thing "l make "xs butfirst thing "l make "singleElementList [ [ x ] [ output butlast list thing "x 0.0 ] ] make "getLeft [ [ a xxs ] [ if eq thing "xxs [ ] [ output [ ] ] [ make "x first thing "xxs make "xs butfirst thing "xxs output sentence if not gt thing "x thing "a [ singleElementList thing "x ] [ [ ] ] getLeft thing "a thing "xs ] ] ] make "getRight [ [ a xxs ] [ if eq thing "xxs [ ] [ output [ ] stop ] [ make "x first thing "xxs make "xs butfirst thing "xxs output sentence if gt thing "x thing "a [ singleElementList thing "x ] [ [ ] ] getRight thing "a thing "xs ] ] ] output sentence sentence qsort getLeft thing "x thing "xs singleElementList thing "x qsort getRight thing "x thing "xs ] ] ]
+fact
+[ [ n ] [ if eq thing "n 0.0 [ output 1.0 ] [ output mul thing "n fact sub thing "n 1.0 ] ] ]
+pi
+[ [ ] [ output 3.14159 ] ]
+run
+[ [ l ] [ repeat 1.0 thing "l ] ]
