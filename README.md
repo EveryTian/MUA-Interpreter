@@ -4,8 +4,6 @@
 
 ### Contents
 
-[MUA(Make Up Programming Lagnuage)](#mua(make up programming language))
-
 [解释器实现内容](#mua解释器的实现内容)
 
 [操作实现方法](#操作实现方法)
