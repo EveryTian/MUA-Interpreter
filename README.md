@@ -2,7 +2,7 @@
 
 `任皓天  3150104714@zju.edu.cn  Haotian_Ren@outlook.com`
 
-###Contents
+### Contents
 
 [MUA(Make Up Programming Lagnuage)](#mua(make up programming language))
 
@@ -506,7 +506,7 @@ public class NameSpace {
 
 命名空间拥有`save`和`load`两个和文件相关的操作，文件的具体格式如下：
 
-我们以`util`文件（已附）为例：（该文件会在**实现快排算法**部分说明）
+我们以`util`文件（已附：[util](util)）为例：（该文件会在**实现快排算法**部分说明）
 
 文件内容如下：
 
@@ -585,12 +585,12 @@ make <word> [<list1> <list2>]
 4. 函数`demo_square`将parameter`a`与argument`10`在自己的命名空间中进行绑定；
 
    此时函数的命名空间中拥有1个绑定，未设定返回值：
-   $$
-   \begin{aligned}
-   &\text{functionName: demo_square}\\
-   &\ \ \ \ \ \ \ \ a\rightarrow 10::number\\
-   &\ \ \ \ \ \ \ \ (\text{returnValue: }null)\end{aligned}
-   $$
+
+   ```
+   functionName: demo_square
+       a -> 10 :: number
+    (returnValue: null)
+   ```
 
 5. 函数`demo_square`将函数体的内容压入自己的数据操作栈中：
 
@@ -599,30 +599,24 @@ make <word> [<list1> <list2>]
       （其中，当遇到`:a`时，函数的数据操作栈从命名空间中取出与`a`所绑定的`number`类型数据`10`）
 
       此时函数的命名空间中拥有2个绑定，未设定返回值：
-      $$
-      \begin{aligned}
-      &\text{functionName: demo_square}\\
-      &\ \ \ \ \ \ \ \ \begin{aligned}
-      a&\rightarrow 10::number\\
-      square\_a&\rightarrow 100::number
-      \end{aligned}\\
-      &\ \ \ \ \ \ \ \ (\text{returnValue: }null)
-      \end{aligned}
-      $$
 
-   2. `output :square_a`部分完全压入后，函数将自己命名空间中与`square_a`所绑定的值`number`类型数据`100`作为自己的返回值，写在自己的命名空间中供自己的的调用者使用；
+      ```
+      functionName: demo_square
+              a -> 10  :: number
+       square_a -> 100 :: number
+            (returnValue: null)
+      ```
+
+      `output :square_a`部分完全压入后，函数将自己命名空间中与`square_a`所绑定的值`number`类型数据`100`作为自己的返回值，写在自己的命名空间中供自己的的调用者使用；
 
       此时函数的命名空间中拥有2个绑定，设定了返回值`100`：
-      $$
-      \begin{aligned}
-      &\text{functionName: demo_square}\\
-      &\ \ \ \ \ \ \ \ \begin{aligned}
-      a&\rightarrow 10::number\\
-      square\_a&\rightarrow 100::number
-      \end{aligned}\\
-      &\ \ \ \ \ \ \ \ (\text{returnValue: }100::number)
-      \end{aligned}
-      $$
+
+      ```
+      functionName: demo_square
+               a -> 10  :: number
+        square_a -> 100 :: number
+      (returnValue: 100 :: number)
+      ```
 
 6. 主数据操作栈从`demo_square`的命名空间中检测其是否存在返回值，检测到返回值后将其返回值取出压入主数据操作栈；
 
@@ -977,7 +971,7 @@ make "fun [
 - `add2`函数重新定义了加操作，`square`函数定义了平方操作，目的在于表示正常的内部函数使用。
 - `m2`函数为无参函数，其内部调用了在外部函数的命名空间中所定义的`square`函数，并直接使用了外部函数的参数，目的在于体现内部函数对外部函数命名空间的正常只读使用。
 
-实际上`fun`函数的简化后数学表示为：$\text{fun}(m,n)=2m^2$。
+实际上`fun`函数的简化后数学表示为：`fun(m,n)=2m^2`
 
 以下使用解释器进行演示：
 
@@ -1105,7 +1099,7 @@ qsort' (x:xs) = qsort' left  ++ [x] ++ qsort' right
           get cond (x:xs) = (if cond x then [x] else []) ++ get cond xs
 ```
 
-其次进行第二步修改，因为MUA语言只能支持一定程度上的$\lambda$函数，如下：
+其次进行第二步修改，因为MUA语言只能支持一定程度上的λ函数，如下：
 
 ```haskell
 qsort'' :: (Ord a) => [a] -> [a]
@@ -1176,7 +1170,7 @@ make "qsort [
 
 **另：**
 
-*`qsort`函数代码以及递归版`fact`函数代码已经使用`save`操作进行导出，导出文件名为`util`，该文件已附，可以使用`load`操作导入。*
+*`qsort`函数代码以及递归版`fact`函数代码已经使用`save`操作进行导出，导出文件名为`util`，该文件已附（[util](util)），可以使用`load`操作导入。*
 
 ![](./readme_images/util_instruction.png)
 
